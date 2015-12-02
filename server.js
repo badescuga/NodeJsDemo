@@ -4,6 +4,10 @@
  * Module dependencies.
  */
 
+require('babel/register')({
+  optional: ['es7.asyncFunctions']
+});
+
 var app = require('./app');
 var debug = require('debug')('demoApp:server');
 var http = require('http');
