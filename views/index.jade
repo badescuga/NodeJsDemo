@@ -1,5 +1,22 @@
 extends layout
 
+append head
+  script(src="/scripts/index.js")
+
 block content
   h1= title
   p Welcome to #{title}
+   div 
+      label#currentStatus Disconnected
+      //for example
+     - for (var i = 0; i < 2; ++i) {
+        br
+      - }
+      input#userName
+      button.btn(onclick="login()") Un Button
+   br
+   br
+   button.btn(onclick="move('left')") <
+   button.btn(onclick="move('right')") >
+   button.btn(onclick="move('up')") ˆ  
+   button.btn(onclick="move('down')") V
