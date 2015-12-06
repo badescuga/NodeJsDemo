@@ -1,5 +1,6 @@
 import opencv
 #this is important for capturing/displaying images
+#https://pypi.python.org/pypi/webcam-streamer/1.0.5
 from opencv import highgui 
 import pygame
 import sys
