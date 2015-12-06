@@ -25,7 +25,7 @@ def callback_login_emit(*args):
 #executing code
 ###################################
 
-if len(sys.argv) > 0 and sys.argv[1] == 'dev':
+if len(sys.argv) > 1 and sys.argv[1] == 'dev':
 	print('>>> raspberry >>> CONNECTING TO LOCALHOST')
 	socketIO = SocketIO('localhost', 3000, LoggingNamespace)
 else:
