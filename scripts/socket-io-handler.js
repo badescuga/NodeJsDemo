@@ -43,8 +43,8 @@ class SocketIOHandler {
 			//on move robot
 			socket.on('moveRobot', (data, callback) => {
 				console.log(' >>> moveRobot de la client. ' + JSON.stringify(data));
-				for(var robot in this.robots) { // no check at this point, will have a select list of devices
-					robot.Move(data.direction,(data) => {
+				for(var key in this.robots) { // no check at this point, will have a select list of devices
+					this.robots[key].Move(data.direction,(data) => {
 						callback(data);
 					});
 				}
