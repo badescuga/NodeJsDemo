@@ -16,6 +16,12 @@ import atexit
          |
    3 O---+---O 4
 
+
+
+Usage:
+    from sebulba import *
+    racer_turnleft('FORWARD', 3)
+
 """
 
 
