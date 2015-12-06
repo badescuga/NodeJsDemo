@@ -16,6 +16,9 @@ def start(*args):
 	print('>>> raspberry >>> CONNECTED')
 	socketIO.emit('login', { 'connectedType': 'robot','name': 'RaspberryCarRobot'}, callback_login_emit)
 	
+def on_disconnect(*args):
+	print('>>> raspberry >>> disconnected from server')
+	
 def on_move_robot(*args):
     print('>>> raspberry >>> on move robot', args)
 	
@@ -37,6 +40,8 @@ socketIO.on('moveRobot',on_move_robot)
 #generic scenario handled 
 socketIO.on('connect', start)
 socketIO.on('reconnect', start);
+socketIO.on('disconnect', on_disconnect);
 
 #keep loop opened (i.e. keep socket opened)
 socketIO.wait()
+#socketIO.wait(seconds=1)
