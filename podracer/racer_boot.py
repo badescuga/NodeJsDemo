@@ -26,7 +26,7 @@ def sigterm_handler(signal, frame):
 signal.signal(signal.SIGTERM, sigterm_handler)
 
 def scroll(msg, color):
-    unicorn_scroll(msg , color, 200,0.05)
+    unicorn_scroll(msg, color, 200, 0.07)
 
 
 #show_letter(special_smilie,'yellow',200)
@@ -50,5 +50,5 @@ def get_ip():
 ipaddr = get_ip()
 
 scroll('SEBULBA READY:', 'green')
-print '\nIP Address: ', ipaddr
+print '\n[SEBULBA] IP Address from Python: ', ipaddr
 scroll(ipaddr, 'yellow')
