@@ -97,7 +97,7 @@ def racer_backward(distance, speed):
     racer_move(distance, speed, 'BACKWARD')
 
 def racer_turnleft(direction, duration):
-    racer_turn('left', direction, duration)
+    racer_turn('LEFT', direction, duration)
 
 def racer_turnright(direction, duration):
-    racer_turn('right', direction, duration)
+    racer_turn('RIGHT', direction, duration)
