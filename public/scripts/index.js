@@ -4,21 +4,32 @@ var socket;
 start();
 
 function start() {
-		socket = io.connect();
-		socket.on('connect',(data)=> {
+	socket = io.connect();
+	socket.on('connect', (data) => {
 
-		});
+	});
 
-		socket.on('reconnect',(data)=> {
+	socket.on('reconnect', (data) => {
 		var name = $('#currentStatus').text('');
-		if(name && name.length > 0) {
+		if (name && name.length > 0) {
 			login();
 		}
-		});
+	});
 
-		socket.on('disconnect',(data)=> {
+	socket.on('disconnect', (data) => {
 		$('#currentStatus').text('Disconnected from server; Trying to reconnect');
-		});
+	});
+
+	//handling video stream
+	socket.on("videoStream", function (data) {
+		var ctx = $('streamCanvas').getContext('2d');
+		if (data) {
+			var img = new Image();
+			img.src = 'data:image/jpeg;base64,' + data;
+			ctx.drawImage(img, 0, 0);
+		}
+	});
+
 }
 
 function login() {
@@ -39,12 +50,22 @@ function login() {
 function move(direction) {
 	console.log(` >>> web client >>> move ${direction}`);
 	socket.emit('moveRobot',
-	{ 'direction': direction },
-	(data) => {
-	console.log(` >>> web client >>> response move robot ${data}`);
+		{ 'direction': direction },
+		(data) => {
+			console.log(` >>> web client >>> response move robot ${data}`);
+		});
+}
+
+function startStream() {
+
+	socket.emit('startClientVideoStream', null, (data) => {
+	console.log(' >>> web client >>> start video stream');
 	});
 }
 
-function getStream() {
-console.log(' >>> web client >>> get stream');
+function stopStream() {
+	console.log(' >>> web client >>> stop video stream');
+	socket.emit('stopClientVideoStream', null, (data) => {
+	console.log(' >>> web client >>> stop video stream');
+	});
 }
