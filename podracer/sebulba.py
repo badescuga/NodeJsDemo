@@ -38,18 +38,19 @@ atexit.register(turnOffMotors)
 
 def racer_move(distance, speed, direction):
     for motor in range(1, 5):
-        mh.getMotor(motor).run(Adafruit_MotorHAT.direction)
         for i in range(10, speed):
-            motor.setSpeed(i)
-        mh.getMotor(motor).run(Adafruit_MotorHAT.RELEASE)
+            m = mh.getMotor(motor)
+            m.setSpeed(i)
+        m.run(Adafruit_MotorHAT.FORWARD)
 
     time.sleep(distance)
 
     for motor in range(1, 5):
-        mh.getMotor(motor).run(Adafruit_MotorHAT.direction)
         for i in reversed(range(0, speed)):
-            motor.setSpeed(i)
-        mh.getMotor(motor).run(Adafruit_MotorHAT.RELEASE)
+            m = mh.getMotor(motor)
+            m.setSpeed(i)
+        m.run(Adafruit_MotorHAT.FORWARD)
+        m.run(Adafruit_MotorHAT.RELEASE)
 
 
 def racer_turn(turn, direction, duration):
