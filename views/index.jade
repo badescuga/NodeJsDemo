@@ -6,17 +6,20 @@ append head
 block content
   h1= title
   p Welcome to #{title}
-   div 
+   div
       label#currentStatus Login
       //for example
      - for (var i = 0; i < 2; ++i) {
         br
       - }
       input#userName
-      button.btn(onclick="login()") Un Button
+      button.btn(onclick="login()") Log in
    br
    br
    button.btn(onclick="move('left')") <
    button.btn(onclick="move('right')") >
-   button.btn(onclick="move('up')") ˆ  
+   button.btn(onclick="move('up')") ˆ
    button.btn(onclick="move('down')") V
+   br
+   br
+   button.btn(onclick="getStream()") Enter Cockpit
