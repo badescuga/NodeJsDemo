@@ -41,29 +41,42 @@ def racer_move(distance, speed, direction):
         for i in range(10, speed):
             m = mh.getMotor(motor)
             m.setSpeed(i)
-        m.run(Adafruit_MotorHAT.FORWARD)
+        if direction == 'FORWARD':
+            m.run(Adafruit_MotorHAT.FORWARD)
+	if direction == 'BACKWARD':
+            m.run(Adafruit_MotorHAT.BACKWARD)
 
     time.sleep(distance)
 
     for motor in range(1, 5):
-        for i in reversed(range(0, speed)):
+        for i in reversed(range(0, speed, 5)):
             m = mh.getMotor(motor)
             m.setSpeed(i)
-        m.run(Adafruit_MotorHAT.FORWARD)
-        m.run(Adafruit_MotorHAT.RELEASE)
+        if direction == 'FORWARD':
+            m.run(Adafruit_MotorHAT.FORWARD)
+            m.run(Adafruit_MotorHAT.RELEASE)
+	if direction == 'BACKWARD':
+            m.run(Adafruit_MotorHAT.BACKWARD)
+            m.run(Adafruit_MotorHAT.RELEASE)
 
 
 def racer_turn(turn, direction, duration):
-    if turn == 'LEFT':
-        motor1 = mh.getMotor(1).run(Adafruit_MotorHAT.direction)
-        motor2 = mh.getMotor(2).run(Adafruit_MotorHAT.direction)
-        motor3 = mh.getMotor(3).run(Adafruit_MotorHAT.direction)
-        motor4 = mh.getMotor(4).run(Adafruit_MotorHAT.direction)
+    motor1 = mh.getMotor(1)
+    motor2 = mh.getMotor(2)
+    motor3 = mh.getMotor(3)
+    motor4 = mh.getMotor(4)
 
-        motor2.setSpeed(40)
-        motor4.setSpeed(40)
-        motor1.setSpeed(5)
-        motor3.setSpeed(5)
+    if turn == 'RIGHT':
+        motor2.setSpeed(65)
+        motor4.setSpeed(90)
+        motor1.setSpeed(230)
+        motor3.setSpeed(170)
+
+        if direction == 'FORWARD':
+            motor2.run(Adafruit_MotorHAT.BACKWARD)
+            motor4.run(Adafruit_MotorHAT.FORWARD)
+            motor1.run(Adafruit_MotorHAT.FORWARD)
+            motor3.run(Adafruit_MotorHAT.FORWARD)
 
         time.sleep(duration)
 
@@ -72,16 +85,17 @@ def racer_turn(turn, direction, duration):
         motor3.run(Adafruit_MotorHAT.RELEASE)
         motor4.run(Adafruit_MotorHAT.RELEASE)
 
-    if turn == 'RIGHT':
-        motor1 = mh.getMotor(1).run(Adafruit_MotorHAT.direction)
-        motor2 = mh.getMotor(2).run(Adafruit_MotorHAT.direction)
-        motor3 = mh.getMotor(3).run(Adafruit_MotorHAT.direction)
-        motor4 = mh.getMotor(4).run(Adafruit_MotorHAT.direction)
+    if turn == 'LEFT':
+        motor2.setSpeed(170)
+        motor4.setSpeed(230)
+        motor1.setSpeed(90)
+        motor3.setSpeed(30)
 
-        motor2.setSpeed(5)
-        motor4.setSpeed(5)
-        motor1.setSpeed(40)
-        motor3.setSpeed(40)
+        if direction == 'FORWARD':
+            motor2.run(Adafruit_MotorHAT.FORWARD)
+            motor4.run(Adafruit_MotorHAT.FORWARD)
+            motor1.run(Adafruit_MotorHAT.BACKWARD)
+            motor3.run(Adafruit_MotorHAT.FORWARD)
 
         time.sleep(duration)
 
