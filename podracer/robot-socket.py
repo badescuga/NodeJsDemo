@@ -55,8 +55,9 @@ def sendStream():
        		r = requests.get('http://localhost:8080/?action=stream/',stream=True)
 		#print('sending stream data '+r.ra
 		for chunk in r.iter_content(decode_unicode=True):
-#        		print('sending.. '+chunk)
-			socketIO.emit('receivedImageStreamFromPi',chunk.decode('utf-8'))
+			val = chunk
+        		print('sending.. '+val)
+			socketIO.emit('receivedImageStreamFromPi',val)
 		time.sleep(1)
 
 t = Thread(target=sendStream)
