@@ -20,7 +20,7 @@ import atexit
 
 Usage:
     from sebulba import *
-    racer_turnleft('FORWARD', 3)
+    racer_move('FORWARD', 3)
 
 """
 
@@ -36,83 +36,84 @@ def turnOffMotors():
 # hook SIGINT and stop all motors upon exit
 atexit.register(turnOffMotors)
 
-def racer_move(distance, speed, direction):
-    for motor in range(1, 5):
-        for i in range(10, speed):
-            m = mh.getMotor(motor)
-            m.setSpeed(i)
-        if direction == 'FORWARD':
-            m.run(Adafruit_MotorHAT.FORWARD)
-	if direction == 'BACKWARD':
-            m.run(Adafruit_MotorHAT.BACKWARD)
+# SEBULBA
+def racer_move(direction, distance):
+    speed = 160
 
-    time.sleep(distance)
-
-    for motor in range(1, 5):
-        for i in reversed(range(0, speed, 5)):
-            m = mh.getMotor(motor)
-            m.setSpeed(i)
-        if direction == 'FORWARD':
-            m.run(Adafruit_MotorHAT.FORWARD)
-            m.run(Adafruit_MotorHAT.RELEASE)
-	if direction == 'BACKWARD':
-            m.run(Adafruit_MotorHAT.BACKWARD)
-            m.run(Adafruit_MotorHAT.RELEASE)
-
-
-def racer_turn(turn, direction, duration):
     motor1 = mh.getMotor(1)
     motor2 = mh.getMotor(2)
     motor3 = mh.getMotor(3)
     motor4 = mh.getMotor(4)
 
-    if turn == 'RIGHT':
+    for i in range(10, speed, 8):
+        motor1.setSpeed(i)
+        motor2.setSpeed(i)
+        motor3.setSpeed(i)
+        motor4.setSpeed(i)
+        if direction == 'FORWARD':
+            for m in range(1, 5):
+            	mh.getMotor(m).run(Adafruit_MotorHAT.FORWARD)
+	if direction == 'BACKWARD':
+            for m in range(1, 5):
+            	mh.getMotor(m).run(Adafruit_MotorHAT.BACKWARD)
+
+    time.sleep(distance)
+
+    for i in reversed(range(0, speed, 8)):
+        motor1.setSpeed(i)
+        motor2.setSpeed(i)
+        motor3.setSpeed(i)
+        motor4.setSpeed(i)
+        if direction == 'FORWARD':
+            for m in range(1, 5):
+                mh.getMotor(m).run(Adafruit_MotorHAT.FORWARD)
+            for m in range(1, 5):
+                mh.getMotor(m).run(Adafruit_MotorHAT.RELEASE)
+        if direction == 'BACKWARD':
+            for m in range(1, 5):
+                mh.getMotor(m).run(Adafruit_MotorHAT.BACKWARD)
+            for m in range(1, 5):
+                mh.getMotor(m).run(Adafruit_MotorHAT.RELEASE)
+
+
+def racer_turn(direction, duration):
+    motor1 = mh.getMotor(1)
+    motor2 = mh.getMotor(2)
+    motor3 = mh.getMotor(3)
+    motor4 = mh.getMotor(4)
+
+    if direction == 'RIGHT':
         motor2.setSpeed(65)
         motor4.setSpeed(90)
         motor1.setSpeed(230)
         motor3.setSpeed(170)
-
-        if direction == 'FORWARD':
-            motor2.run(Adafruit_MotorHAT.BACKWARD)
-            motor4.run(Adafruit_MotorHAT.FORWARD)
-            motor1.run(Adafruit_MotorHAT.FORWARD)
-            motor3.run(Adafruit_MotorHAT.FORWARD)
-
+        # Floor it!
+        motor2.run(Adafruit_MotorHAT.BACKWARD)
+        motor4.run(Adafruit_MotorHAT.FORWARD)
+        motor1.run(Adafruit_MotorHAT.FORWARD)
+        motor3.run(Adafruit_MotorHAT.FORWARD)
+        # Turn for (duration) seconds
         time.sleep(duration)
-
+        # Brake!
         motor1.run(Adafruit_MotorHAT.RELEASE)
         motor2.run(Adafruit_MotorHAT.RELEASE)
         motor3.run(Adafruit_MotorHAT.RELEASE)
         motor4.run(Adafruit_MotorHAT.RELEASE)
 
-    if turn == 'LEFT':
+    if direction == 'LEFT':
         motor2.setSpeed(170)
         motor4.setSpeed(230)
         motor1.setSpeed(90)
         motor3.setSpeed(30)
-
-        if direction == 'FORWARD':
-            motor2.run(Adafruit_MotorHAT.FORWARD)
-            motor4.run(Adafruit_MotorHAT.FORWARD)
-            motor1.run(Adafruit_MotorHAT.BACKWARD)
-            motor3.run(Adafruit_MotorHAT.FORWARD)
-
+        # Floor it!
+        motor2.run(Adafruit_MotorHAT.FORWARD)
+        motor4.run(Adafruit_MotorHAT.FORWARD)
+        motor1.run(Adafruit_MotorHAT.BACKWARD)
+        motor3.run(Adafruit_MotorHAT.FORWARD)
+        # Turn for (duration) seconds
         time.sleep(duration)
-
+        # Brake!
         motor1.run(Adafruit_MotorHAT.RELEASE)
         motor2.run(Adafruit_MotorHAT.RELEASE)
         motor3.run(Adafruit_MotorHAT.RELEASE)
         motor4.run(Adafruit_MotorHAT.RELEASE)
-
-
-def racer_forward(distance, speed):
-    racer_move(distance, speed, 'FORWARD')
-
-def racer_backward(distance, speed):
-    racer_move(distance, speed, 'BACKWARD')
-
-def racer_turnleft(direction, duration):
-    racer_turn('LEFT', direction, duration)
-
-def racer_turnright(direction, duration):
-    racer_turn('RIGHT', direction, duration)

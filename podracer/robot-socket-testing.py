@@ -10,8 +10,6 @@ import time
 from threading import Thread
 import requests
 
-#sys.setdefaultencoding('utf-8')
-
 #logging.getLogger('requests').setLevel(logging.WARNING)
 #logging.basicConfig(level=logging.DEBUG)
 
@@ -28,6 +26,20 @@ def on_disconnect(*args):
 	
 def on_move_robot(*args):
     print('>>> raspberry >>> on move robot', args)
+    direction = args[0]['direction'] 
+    print 'RECEIVED', direction
+    if direction == 'up':
+	print 'DRIVING', direction
+        racer_move('FORWARD', 2)
+    if direction == 'down':
+        print 'DRIVING', direction
+        racer_move('BACKWARD', 2)
+    if direction == 'left':
+	print 'DRIVING', direction
+        racer_turn('LEFT', 2)
+    if direction == 'right':
+	print 'DRIVING', direction
+        racer_turn('RIGHT', 2)
 	
 def callback_login_emit(*args):
 	print('>>> raspberry >>> callback login emit', args)
@@ -49,19 +61,9 @@ socketIO.on('connect', start)
 socketIO.on('reconnect', start);
 socketIO.on('disconnect', on_disconnect);
 
-def sendStream():
-	print('starting sending stream')
-	while 1:
-       		r = requests.get('http://localhost:8080/?action=stream/',stream=True)
-		#print('sending stream data '+r.ra
-		for chunk in r.iter_content(decode_unicode=True):
-#        		print('sending.. '+chunk)
-			socketIO.emit('receivedImageStreamFromPi',chunk.decode('utf-8'))
-		time.sleep(1)
 
-t = Thread(target=sendStream)
-t.daemon = True
-t.start()
+print(' starting loop for streaming ')
+
 
 #keep loop opened (i.e. keep socket opened)
 socketIO.wait()
