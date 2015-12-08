@@ -39,7 +39,7 @@ def get_ip():
     try:
         # doesn't even have to be reachable
         # s.timeout(2)
-        s.connect(('10.1.1.1', 0))
+        s.connect(('8.8.8.8', 53))
         IP = s.getsockname()[0]
     except:
         IP = 'Cannot get IP'
