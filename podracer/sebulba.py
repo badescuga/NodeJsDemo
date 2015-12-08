@@ -83,7 +83,7 @@ def racer_turn(direction, duration):
     motor4 = mh.getMotor(4)
 
     if direction == 'RIGHT':
-        motor2.setSpeed(65)
+        motor2.setSpeed(55)
         motor4.setSpeed(90)
         motor1.setSpeed(230)
         motor3.setSpeed(170)
