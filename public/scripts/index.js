@@ -1,6 +1,5 @@
 
 var socket;
-
 start();
 
 function start() {
@@ -21,30 +20,11 @@ function start() {
 	});
 
 	//handling video stream
-	socket.on("videoStream", function (data) {
-		// var ctx = $('streamCanvas').getContext('2d');
-		// if (data) {
-		// 	var img = new Image();
-		// 	img.src = 'data:image/jpeg;base64,' + data;
-		// 	ctx.drawImage(img, 0, 0);
-		// }
-		//WriteToFile(data);
-		$("imageStream").src = data;
 
+	socket.on("videoStream", function (data) {
+	 $("#videoStream").attr('src','data:image/jpeg;base64, ' + data);
 	});
 
-}
-
-function WriteToFile(data){
-	var txtFile = "c:/test.txt";
-		var file = new File(txtFile);
-		var str = "My string of text";
-
-		file.open("w"); // open file with write access
-		file.writeln("First line of text");
-		file.writeln("Second line of text " + str);
-		file.write(str);
-		file.close();
 }
 
 function login() {
