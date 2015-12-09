@@ -65,7 +65,7 @@ def sendStream():
 	#	print(' -- '+val)
 	#	print(type(val))
 		socketIO.emit('receivedImageStreamFromPi',val)
-		time.sleep(.05)
+		#time.sleep(.05)
 	#break
 
 
