@@ -72,7 +72,6 @@ class SocketIOHandler {
 			});
 
 			socket.on('receivedImageStreamFromPi', (data,callback) => {
-				console.log('received!!');
 				for(var key in this.controllers) {
 					if(this.controllers[key].videoStreamEnabled) {
 					this.controllers[key].SendVideoStream(data);
