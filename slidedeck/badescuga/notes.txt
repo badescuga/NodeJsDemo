@@ -1,0 +1,66 @@
+
+
+——————— slide 1 - Ce este PaaS *Platform as a service*
+
+Este un serviciu care furnizeaza o platforma pe care se permite crearea si hostarea unor aplicatii web prin care sunteti scutiti de managementul infrasturcturii de dedesubt (detalii: OS, OS updates, IIS, IIS Updates, Hotfixes, Development updates php 5.5/5.6, .NET, etc)
+
+Pentru web apps, nu CS:
+
+avantaje: usor de manage-uit, fast-prototyping, usor de scalat. Poti sa-ti concentrezi eforturile pe produsul tau si nu pe infrastructura.
+dezavantaj: o oarecare lipsa de control in ceea ce priveste infrastructura (nu poti sa-ti pui propiul OS, IIS, etc)
+
+cam tot ce poti face din portal poti face si din command line (PS,xplat CLI). Automatizare.
+
+—— Demo create a simple app; no code; from the portal.
+Make a short description about App Service Plan.
+
+———————— slide 1.1 App service plan. What it is
+
+—talk
+
+———————————slide 2 Continuous Integration
+
+—demo leaga de un local git si deploy(preferabil, creaza o aplicatie cu express); Azure stie deja ce aplicatie ai
+
+—————————— slide 3 Deployment slots
+
+https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/
+Deployment slots if Standard and higher
+-cand deployezi, pot sa deployezi pe un staging slot; 
+-sloturile sunt live apps; 
+-poti testa un anumit feature inca in beta
+-you can swap slots, no downtime for your app
+-poti avea env variables specifice fiecarui slot
+
+——————————— slide 4 scaling & auto scaling
+
+you can scale your app up & out. You can change the size of the app service plan (the VM) and the number of instance for your your app service plan.
+
+—example of scaling out :
+Scale up by 1 instance if CPU is above 70% in the last 10 minutes
+Scale up by 3 instances if CPU is above 90% in the last 5 minutes
+Scale down by 1 instance if CPU is below 50% in the last 30 minutes
+
+—demo scaling & autoscaling
+hit with curl to see arrafinity cookie different 
+curl -vvv decemberdemoapp.azurewebsites.net
+
+
+——————————— slide 5 Kudu portal
+
+—demo
+https://decemberdemoapp.scm.azurewebsites.net/
+
+—————————— slide 6 Auto-healing 
+—Recovery in certain scenarios
+
+https://decemberdemoapp.scm.azurewebsites.net/support -> Mitigate 
+
+—————————— trafic manager
+
+
+
+
+
+
+
