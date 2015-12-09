@@ -11,6 +11,9 @@ echo [RACER] INITIALIZING DRIVER: SEBULBA
 cd podracer/hat-invaders
 sudo ./invaders &
 cd ..
+
+sudo python robot-socket.py
+
 echo "--------------"
 echo [RACER] "RACER READY."
 echo "-------------"
