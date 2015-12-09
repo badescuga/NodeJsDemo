@@ -16,10 +16,16 @@ block content
       button.btn(onclick="login()") Log in
    br
    br
-   button.btn(onclick="move('left')") <
-   button.btn(onclick="move('right')") >
-   button.btn(onclick="move('up')") ˆ
-   button.btn(onclick="move('down')") V
+   span(style='margin-left:48px;')
+      button.btn(onclick="move('up')", style="font-size: 24px; width: 40px; height: 40px") &uarr;
+   br
+   button.btn(onclick="move('left')", style="font-size: 24px; width: 40px; height: 40px") &larr;
+   span(style='margin-left:55px;')
+      button.btn(onclick="move('right')", style="font-size: 24px; width: 40px; height: 40px") &rarr;
+   br
+   span(style='margin-left:48px;')
+      button.btn(onclick="move('down')", style="font-size: 24px; width: 40px; height: 40px") &darr;
+   br
    br
    br
    button.btn(onclick="startStream()") Enter Cockpit
