@@ -11,6 +11,7 @@ import requests
 import time
 from threading import Thread
 import requests
+import base64
 
 reload(sys)
 sys.setdefaultencoding('cp437')
@@ -55,16 +56,17 @@ def callback_login_emit(*args):
 	
 def sendStream():
 	print('starting sending stream')
-#	while 1:
-    	r = requests.get('http://localhost:8080/?action=stream/',stream=True)
-		#print('sending stream data '+r.ra
-	for line in r.iter_lines():
-		val = line
-		print(' -- '+val)
-		print(type(val))
+	while 1:
+	    	r = requests.get('http://localhost:8080/?action=snapshot/',stream=True)
+		val = r.raw.data
+		#for line in r.iter_lines():
+		#	val = val + line
+		val = base64.b64encode(val)
+	#	print(' -- '+val)
+	#	print(type(val))
 		socketIO.emit('receivedImageStreamFromPi',val)
-		#time.sleep(1)
-		#break
+		time.sleep(.05)
+	#break
 
 
 #executing code
