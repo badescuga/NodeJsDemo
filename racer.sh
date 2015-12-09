@@ -16,4 +16,4 @@ echo "--------------"
 echo [RACER] "RACER READY."
 echo "-------------"
 
-sudo python robot-socket.py
+sudo python podracer/robot-socket.py
