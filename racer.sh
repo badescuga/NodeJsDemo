@@ -10,10 +10,10 @@ echo "--------------------------------------"
 echo [RACER] INITIALIZING DRIVER: SEBULBA
 cd podracer/hat-invaders
 sudo ./invaders &
-
+cd ..
 
 echo "--------------"
 echo [RACER] "RACER READY."
 echo "-------------"
 
-sudo python podracer/robot-socket.py
+sudo python robot-socket.py
