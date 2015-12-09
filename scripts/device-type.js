@@ -46,7 +46,7 @@ class Controller extends DeviceBase {
 
 	SendVideoStream(data) {
 		this.socket.emit('videoStream', data, (info) => {
-			console.log(' >>> web server >>> emitted video to client');
+	//		console.log(' >>> web server >>> emitted video to client');
 		});
 	}
 }
