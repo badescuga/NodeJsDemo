@@ -1,0 +1,34 @@
+extends layout
+
+append head
+  script(src="/scripts/index.js")
+
+block content
+  h1 Sebulba's Joyride
+  img(src="https://cloud.githubusercontent.com/assets/6472374/11669653/81016e7e-9e06-11e5-97e5-19dbe3937151.png", style="width: 260px")
+  br
+  p (C) Image Copyright Lucasfilm LTD
+   br
+
+   div
+     h3
+      label#currentStatus Login
+      br
+      input#userName
+      button.btn(onclick="login()") Log in
+   br
+   br
+   span(style='margin-left:48px;')
+      button.btn(onclick="move('up')", style="font-size: 24px; width: 40px; height: 40px") &uarr;
+   br
+   button.btn(onclick="move('left')", style="font-size: 24px; width: 40px; height: 40px") &larr;
+   span(style='margin-left:55px;')
+      button.btn(onclick="move('right')", style="font-size: 24px; width: 40px; height: 40px") &rarr;
+   br
+   span(style='margin-left:48px;')
+      button.btn(onclick="move('down')", style="font-size: 24px; width: 40px; height: 40px") &darr;
+   br
+   br
+   br
+   button.btn(onclick="startStream()") Enter Cockpit
+  img#videoStream(style="width:640px; height:480px")

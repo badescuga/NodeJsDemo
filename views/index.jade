@@ -13,25 +13,9 @@ block content
    div
      h3
       label#currentStatus Login
-      //for example
-     - for (var i = 0; i < 1; ++i) {
-        br
-      - }
+      br
       input#userName
       button.btn(onclick="login()") Log in
-   br
-   br
-   span(style='margin-left:48px;')
-      button.btn(onclick="move('up')", style="font-size: 24px; width: 40px; height: 40px") &uarr;
-   br
-   button.btn(onclick="move('left')", style="font-size: 24px; width: 40px; height: 40px") &larr;
-   span(style='margin-left:55px;')
-      button.btn(onclick="move('right')", style="font-size: 24px; width: 40px; height: 40px") &rarr;
-   br
-   span(style='margin-left:48px;')
-      button.btn(onclick="move('down')", style="font-size: 24px; width: 40px; height: 40px") &darr;
-   br
-   br
    br
    button.btn(onclick="startStream()") Enter Cockpit
   img#videoStream(style="width:640px; height:480px")
