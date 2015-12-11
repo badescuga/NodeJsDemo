@@ -9,6 +9,9 @@ A not-so-basic demo for the December Microsoft Webinar on Azure App Services Web
 
 [3m41s Video on Vimeo](https://vimeo.com/148595611)
 
+### And here's our first draft - one week before we actually commited anything (WHUUT!) ###
+![image](https://cloud.githubusercontent.com/assets/6472374/11752378/f1255d26-a047-11e5-9f57-96daad195813.png)
+
 ###IMPORTANT###
 
 Don't forget to add `BABEL_DISABLE_CACHE = 1` as an environment variable (App Settings) for the web app in the azure portal.
